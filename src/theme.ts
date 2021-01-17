@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
     @media only screen and (max-width: 768px) {
       padding: 2rem;
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 `;

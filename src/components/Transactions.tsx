@@ -37,7 +37,7 @@ const Transactions: React.FC<TransactionsProps> = ({
         <TransactionComponent key={transaction.id} transaction={transaction} />
       ))}
 
-      <StyledButton onClick={onClick}>
+      <StyledButton data-testid="btnToggle" onClick={onClick}>
         {isSetAsBill ? "Remove from bills" : "Add to bills"}
       </StyledButton>
     </StyledContainer>

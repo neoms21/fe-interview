@@ -23,3 +23,13 @@
 - We love tests, linted code and great looking UIs
 - The API contains other data, feel free to use this creatively if you have the time
 - Remember to check your project runs before submitting
+
+
+### Implementation misses
+- Spent around 5-6 hours, got a bit stuck on Tabs implementation to make it generic with fully composable from the consumers.
+- Idea would be to implement accordions in the same way as Tabs but was running out of time so used a library
+- I just couldn't arrive at a logical design to show the category along with Merchant information. Tried coupld of designs but just couldn't quite fit it in.
+- Couldn't test the chevron toggling using RTL as jsdom doesn't support pseudo elements selection yet
+- Could have used redux-saga-test-plan for unit testing sagas as it would also test the watchers but it becomes more of an integration test and I wanted to keep the tests atomic.
+- Ran out of time for writing tests for Tabs component
+- Workers have return type as any which should be changed to strongly typed.

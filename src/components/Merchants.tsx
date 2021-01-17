@@ -9,7 +9,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getFormattedMerchants } from "redux/selectors";
 import { AppState, UiMerchant } from "types";
-// import { v4 as uuidv4 } from "uuid";
 import Merchant from "./Merchant";
 import "react-accessible-accordion/dist/fancy-example.css";
 import styled from "styled-components";
@@ -66,25 +65,34 @@ const Merchants: React.FC<MerchantsProps> = ({ merchantSetAsBill }) => {
     }
   }, [merchants, expandedItems]);
 
-  const handleClick = (merchant: UiMerchant) => {
+  const handleMerchantToggle = (merchant: UiMerchant) => {
     dispatch(toggleMerchantAction(merchant.id, !merchant.isBill));
   };
 
+  const handleAccordionToggle = (merchantId: string) => {
+    const updatedExpandedItems: Record<string, boolean> = {};
+    Object.keys(expandedItems).forEach(
+      (i) => (updatedExpandedItems[i] = i === merchantId)
+    );
+    setExpandedItems(updatedExpandedItems);
+  };
+
   return (
-    <Accordion allowZeroExpanded>
+    <Accordion
+      allowZeroExpanded
+      onChange={(merchantIds) => handleAccordionToggle(merchantIds[0])}
+    >
       {merchants.map((merchant) => (
         <AccordionItem
-          onClick={() => {
-            const updatedExpandedItems: Record<string, boolean> = {};
-            Object.keys(expandedItems).forEach(
-              (i) => (updatedExpandedItems[i] = i === merchant.id)
-            );
-            setExpandedItems(updatedExpandedItems);
-          }}
+          uuid={merchant.id}
+          onClick={() => handleAccordionToggle(merchant.id)}
           key={merchant.name}
         >
           <AccordionItemHeading>
-            <StyledAccordionButton rotated={expandedItems[merchant.id] ? 1 : 0}>
+            <StyledAccordionButton
+              data-testid={merchant.id}
+              rotated={expandedItems[merchant.id] ? 1 : 0}
+            >
               <Merchant key={merchant.id} merchant={merchant} />
             </StyledAccordionButton>
           </AccordionItemHeading>
@@ -92,7 +100,7 @@ const Merchants: React.FC<MerchantsProps> = ({ merchantSetAsBill }) => {
             <Transactions
               isSetAsBill={merchant.isBill}
               transactions={merchant.transactions}
-              onClick={() => handleClick(merchant)}
+              onClick={() => handleMerchantToggle(merchant)}
             />
           </AccordionItemPanel>
         </AccordionItem>
