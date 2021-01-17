@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import App from "App";
+import { store } from "redux/store/configureStore";
+import GlobalStyle from "theme";
 
-ReactDOM.render(
-  <React.StrictMode>
+render(
+  <Provider store={store()}>
+    <GlobalStyle />
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
