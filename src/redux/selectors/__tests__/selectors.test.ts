@@ -1,4 +1,5 @@
 import { getFormattedMerchants } from "redux/selectors";
+import { AppState } from "types";
 
 const appState: AppState = {
   merchants: {
@@ -9,7 +10,10 @@ const appState: AppState = {
         iconUrl: "dummy",
         categoryId: 1,
         isBill: false,
-        transactions: [],
+        transactions: [
+          { id: 1, amount: 20, date: "2011-10-02" },
+          { id: 2, amount: 10, date: "2011-10-02" },
+        ],
       },
       m2: {
         id: "m2",
@@ -34,9 +38,13 @@ describe("selectors test", () => {
         iconUrl: "dummy",
         categoryId: 1,
         isBill: false,
-        transactions: [],
+        transactions: [
+          { id: 1, amount: 20, date: "2011-10-02" },
+          { id: 2, amount: 10, date: "2011-10-02" },
+        ],
         categoryIconUrl: "ci",
         categoryName: "c1",
+        averageSpend: 15,
       },
     ]);
   });
@@ -53,6 +61,7 @@ describe("selectors test", () => {
         transactions: [],
         categoryIconUrl: "ci",
         categoryName: "c1",
+        averageSpend: 0,
       },
     ]);
   });

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { UiMerchant } from "types";
+import { getFormattedPayment } from "utils";
 import Image from "./Image";
 
 interface MerchantProps {
@@ -26,12 +27,18 @@ const StyledMerchant = styled.div`
 `;
 
 const Merchant: React.FC<MerchantProps> = ({ merchant }) => {
-  const { name, iconUrl, categoryIconUrl, categoryName } = merchant;
+  const {
+    name,
+    iconUrl,
+    categoryIconUrl,
+    categoryName,
+    averageSpend,
+  } = merchant;
 
   return (
     <StyledMerchantContainer>
       <StyledMerchant>
-        <span>{name}</span>
+        <span>{name}</span> - <span>{getFormattedPayment(averageSpend)}</span>
       </StyledMerchant>
       <Image src={iconUrl} alt={name} />
     </StyledMerchantContainer>

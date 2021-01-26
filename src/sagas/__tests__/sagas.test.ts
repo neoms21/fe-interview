@@ -24,6 +24,7 @@ describe("Sagas tests", () => {
         transactions: [],
       },
     ];
+    
     const mockMerchantsApi = jest
       .spyOn(api, "fetchMerchantsApi")
       .mockImplementation(() => Promise.resolve(mockMerchants));

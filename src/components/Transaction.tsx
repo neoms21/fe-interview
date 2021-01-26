@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { format, parse } from "date-fns";
 import { Transaction } from "types";
+import { getFormattedPayment } from "utils";
 
 interface TransactionProps {
   transaction: Transaction;
@@ -27,12 +28,7 @@ const TransactionComponent: React.FC<TransactionProps> = ({ transaction }) => {
       <span>
         {format(parse(date, "yyyy-MM-dd", new Date()), "EEE, dd MMM yyyy")}
       </span>
-      <StyledCurrency>
-        {amount.toLocaleString(undefined, {
-          style: "currency",
-          currency: "GBP",
-        })}
-      </StyledCurrency>
+      <StyledCurrency>{getFormattedPayment(amount)}</StyledCurrency>
     </StyledTransaction>
   );
 };

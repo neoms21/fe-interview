@@ -36,4 +36,5 @@ export interface UiMerchant {
   categoryName: string;
   categoryIconUrl: string;
   transactions: Array<Transaction>;
+  averageSpend: number;
 }
